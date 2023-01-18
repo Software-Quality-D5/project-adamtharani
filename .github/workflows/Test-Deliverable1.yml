@@ -1,0 +1,30 @@
+name: Test Deliverable 1
+
+on: [push]
+
+jobs:
+  test:
+    name: Test
+    runs-on: ubuntu-latest
+
+    permissions:
+      checks: write
+      pull-requests: write
+    
+
+    steps:
+      - uses: actions/checkout@v3
+      - name: Set up JDK 17
+        uses: actions/setup-java@v3
+        with:
+          java-version: '17'
+          distribution: 'microsoft'
+      - name: Test with Maven
+        run: mvn --batch-mode test
+        working-directory: deliverable_1/BinaryCalculator
+      
+      - name: Publish Test Results
+        uses: EnricoMi/publish-unit-test-result-action@v2
+        if: always()
+        with:
+          junit_files: "deliverable_1/BinaryCalculator/target/surefire-reports/*.xml"
