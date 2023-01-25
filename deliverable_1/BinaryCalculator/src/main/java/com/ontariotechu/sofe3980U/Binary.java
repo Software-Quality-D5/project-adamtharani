@@ -100,23 +100,41 @@ public class Binary {
         String num1 = number1.number;
         String num2 = number2.number;
         String result = "";
-        int i = num1.length() - 1;
-        int j = num2.length() - 1;
-        while (i >= 0 || j >= 0) {
-            if (i >= 0 && j >= 0) {
-                if (num1.charAt(i) == '1' && num2.charAt(j) == '1') {
+        int num1Index = num1.length() - 1;
+        int num2Index = num2.length() - 1;
+
+        // Make number same length by adding leading zeros
+        if (num1Index > num2Index) {
+            int diff = num1Index - num2Index;
+            for (int i = 0; i < diff; i++) {
+                num2 = "0" + num2;
+            }
+            num2Index = num1Index;
+        } else if (num2Index > num1Index) {
+            int diff = num2Index - num1Index;
+            for (int i = 0; i < diff; i++) {
+                num1 = "0" + num1;
+            }
+            num1Index = num2Index;
+        }
+
+
+
+        while (num1Index >= 0 || num2Index >= 0) {
+            if (num1Index >= 0 && num2Index >= 0) {
+                if (num1.charAt(num1Index) == '1' && num2.charAt(num2Index) == '1') {
                     result = "1" + result;
                 } else {
                     result = "0" + result;
                 }
-                i--;
-                j--;
-            } else if (i >= 0) {
-                result = num1.charAt(i) + result;
-                i--;
-            } else if (j >= 0) {
-                result = num2.charAt(j) + result;
-                j--;
+                num1Index--;
+                num2Index--;
+            } else if (num1Index >= 0) {
+                result = num1.charAt(num1Index) + result;
+                num1Index--;
+            } else if (num2Index >= 0) {
+                result = num2.charAt(num2Index) + result;
+                num2Index--;
             }
         }
         return new Binary(result);

@@ -170,7 +170,7 @@ public class BinaryTest {
         Binary binary1 = new Binary("10011010");
         Binary binary2 = new Binary("01000110");
         Binary binary3 = Binary.and(binary1, binary2);
-        assertEquals("00000010", binary3.getValue());
+        assertEquals("10", binary3.getValue());
     }
 
     /**
@@ -181,7 +181,7 @@ public class BinaryTest {
         Binary binary1 = new Binary("010001");
         Binary binary2 = new Binary("10011010");
         Binary binary3 = Binary.and(binary1, binary2);
-        assertEquals("00010000", binary3.getValue());
+        assertEquals("10000", binary3.getValue());
     }
 
     /**
@@ -192,6 +192,18 @@ public class BinaryTest {
         Binary binary1 = new Binary("1100101010");
         Binary binary2 = new Binary("00110100");
         Binary binary3 = Binary.and(binary1, binary2);
-        assertEquals("0000100000", binary3.getValue());
+        assertEquals("100000", binary3.getValue());
+    }
+
+    /**
+     * Test the and function with a binary numbers with no leading 0's
+     */
+    @Test
+    public void and4() {
+        Binary binary1 = new Binary("1100101010");
+        Binary binary2 = new Binary("1111110111");
+        Binary binary3 = Binary.and(binary1, binary2);
+        assertEquals("1100100010", binary3.getValue());
     }
 }
+
