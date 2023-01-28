@@ -205,5 +205,49 @@ public class BinaryTest {
         Binary binary3 = Binary.and(binary1, binary2);
         assertEquals("1100100010", binary3.getValue());
     }
+
+    /**
+     * Test the multiply function with two binary numbers of the same length
+     */
+    @Test
+    public void multiply() {
+        Binary binary1 = new Binary("10011010");
+        Binary binary2 = new Binary("01000110");
+        Binary binary3 = Binary.multiply(binary1, binary2);
+        assertEquals("10101000011100", binary3.getValue());
+    }
+
+    /**
+     * Test the multiply function with two binary numbers, the length of the first argument is less than the second
+     */
+    @Test
+    public void multiply2() {
+        Binary binary1 = new Binary("010001");
+        Binary binary2 = new Binary("10011010");
+        Binary binary3 = Binary.multiply(binary1, binary2);
+        assertEquals("101000111010", binary3.getValue());
+    }
+
+    /**
+     * Test the multiply function with two binary numbers, the length of the first argument is greater than the second
+     */
+    @Test
+    public void multiply3() {
+        Binary binary1 = new Binary("1100101010");
+        Binary binary2 = new Binary("00110100");
+        Binary binary3 = Binary.multiply(binary1, binary2);
+        assertEquals("1010010010001000", binary3.getValue());
+    }
+
+    /**
+     * Test the multiply function with a binary numbers with no leading 0's
+     */
+    @Test
+    public void multiply4() {
+        Binary binary1 = new Binary("1100101010");
+        Binary binary2 = new Binary("1111110111");
+        Binary binary3 = Binary.multiply(binary1, binary2);
+        assertEquals("11001000101110000110", binary3.getValue());
+    }
 }
 

@@ -70,6 +70,13 @@ public class Binary {
 
     }
 
+    /**
+     * Bit Wise or two binary variables.
+     *
+     * @param number1 The first or'd object
+     * @param number2 The second or'd object
+     * @return A binary variable with a value of <i>number1||number2</i>.
+     */
     public static Binary or(Binary number1, Binary number2) {
         String num1 = number1.number;
         String num2 = number2.number;
@@ -96,6 +103,13 @@ public class Binary {
         return new Binary(result);
     }
 
+    /**
+     * Bit Wise and two binary variables.
+     *
+     * @param number1 The first and'd object
+     * @param number2 The second and'd object
+     * @return A binary variable with a value that had and the input params.
+     */
     public static Binary and(Binary number1, Binary number2) {
         String num1 = number1.number;
         String num2 = number2.number;
@@ -138,6 +152,46 @@ public class Binary {
             }
         }
         return new Binary(result);
+    }
+
+    /**
+     * Bit Wise multiply two binary variables.
+     *
+     * @param number1 The first multiplied object
+     * @param number2 The second multiplied object
+     * @return A binary variable with a value of <i>number1 * number2</i>.
+     */
+    public static Binary multiply(Binary number1, Binary number2) {
+        String num1 = number1.number;
+        String num2 = number2.number;
+        String result = "";
+        int num1Index = num1.length() - 1;
+        int num2Index = num2.length() - 1;
+
+        // Make number same length by adding leading zeros
+        if (num1Index > num2Index) {
+            int diff = num1Index - num2Index;
+            for (int i = 0; i < diff; i++) {
+                num2 = "0" + num2;
+            }
+            num2Index = num1Index;
+        } else if (num2Index > num1Index) {
+            int diff = num2Index - num1Index;
+            for (int i = 0; i < diff; i++) {
+                num1 = "0" + num1;
+            }
+            num1Index = num2Index;
+        }
+
+        // Multiply
+        int number1Int = Integer.parseInt(num1, 2);
+        int number2Int = Integer.parseInt(num2, 2);
+
+        int resultInt = number1Int * number2Int;
+        result = Integer.toBinaryString(resultInt);
+
+        return new Binary(result);
+
     }
 
     /**

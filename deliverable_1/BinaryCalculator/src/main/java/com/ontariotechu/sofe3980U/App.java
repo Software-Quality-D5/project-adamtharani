@@ -34,5 +34,13 @@ public class App {
         System.out.println("-----------------------------------");
         System.out.println(and.getValue());
 
+        Binary multiply = Binary.multiply(binary3, binary4);
+        System.out.println("===================================");
+        System.out.println(binary3.getValue());
+        System.out.println(binary4.getValue());
+        System.out.println("-----------------------------------");
+        System.out.println(multiply.getValue());
+
+
     }
 }
