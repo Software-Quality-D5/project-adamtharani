@@ -6,6 +6,7 @@ import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMock
 import org.springframework.test.web.servlet.MockMvc;
 
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
+import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
@@ -47,5 +48,23 @@ public class BinaryAPIControllerTest {
 			.andExpect(MockMvcResultMatchers.jsonPath("$.operand2").value(1010))
 			.andExpect(MockMvcResultMatchers.jsonPath("$.result").value(10001))
 			.andExpect(MockMvcResultMatchers.jsonPath("$.operator").value("add"));
+    }
+
+    @Test
+    public void add3() throws Exception {
+        this.mvc.perform(get("/add_json").param("operand1", "212").param("operand2", "232"))//.andDo(print())
+                .andExpect(status().isOk())
+                .andExpect(MockMvcResultMatchers.jsonPath("$.operand1").value(0));
+    }
+
+    @Test
+    public void subtract() throws Exception {
+        this.mvc.perform(get("/subtract").param("operand1", "111").param("operand2", "1010"))//.andDo(print())
+                .andExpect(status().isNotFound());
+    }
+    @Test
+    public void subtract2() throws Exception {
+        this.mvc.perform(get("/subtract_json").param("operand1", "111").param("operand2", "1010"))//.andDo(print())
+                .andExpect(status().isNotFound());
     }
 }
