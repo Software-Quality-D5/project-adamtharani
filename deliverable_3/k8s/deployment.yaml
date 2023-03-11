@@ -1,0 +1,18 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: binarycalculator
+spec:
+  selector:
+    matchLabels:
+      app: binarycalculator
+  template:
+    metadata:
+      labels:
+        app: binarycalculator
+    spec:
+      containers:
+      - name: binarycalculator
+        image: ghcr.io/software-quality-d5/binary-calculator-webapp:2023-03-10-2058
+        ports:
+        - containerPort: 8080
